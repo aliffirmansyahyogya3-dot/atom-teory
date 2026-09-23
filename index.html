@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Evolution of the Atom</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<nav class="navbar" id="navbar">
+  <span class="nav-brand">Atom<span class="accent">·</span>Evolution</span>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle menu">☰</button>
+  <div class="nav-links" id="navLinks">
+    <a href="#home">Home</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#models">Models</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#compare">Compare</a>
+    <a href="#about">About</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+    <div class="hero-copy">
+      <h1>The Evolution of the Atom</h1>
+      <p class="subtitle">From Dalton's solid sphere to the quantum mechanical model — five ideas, over a century of discovery.</p>
+      <button class="btn btn-primary" id="startBtn">Start exploring</button>
+    </div>
+    <div class="hero-stage-wrap">
+      <div class="atom-3d-stage" id="heroStage">
+        <div class="atom-3d" id="heroAtom"></div>
+      </div>
+      <p class="drag-hint">Drag to rotate</p>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline" class="timeline-section fade-target">
+    <h2>Five models, five turning points</h2>
+    <div class="timeline" id="timelineTrack" role="listbox" aria-label="Atomic model timeline"></div>
+  </section>
+
+  <!-- MODEL VIEWER -->
+  <section id="models" class="model-section fade-target">
+    <div class="model-grid">
+      <div class="stage-column">
+        <div class="model-controls" role="group" aria-label="Model view controls">
+          <button id="prevBtn" class="ctrl-btn" aria-label="Previous model">‹ Prev</button>
+          <button id="autoRotateBtn" class="ctrl-btn" aria-pressed="true">Auto-rotate</button>
+          <button id="playPauseBtn" class="ctrl-btn" aria-pressed="true">Pause motion</button>
+          <button id="zoomOutBtn" class="ctrl-btn" aria-label="Zoom out">–</button>
+          <button id="zoomInBtn" class="ctrl-btn" aria-label="Zoom in">+</button>
+          <button id="resetViewBtn" class="ctrl-btn">Reset view</button>
+          <button id="nextBtn" class="ctrl-btn" aria-label="Next model">Next ›</button>
+        </div>
+        <div class="atom-3d-stage" id="modelStage">
+          <div class="atom-3d" id="modelAtom"></div>
+        </div>
+        <div class="model-extra" id="modelExtra"></div>
+      </div>
+
+      <div class="info-panel glass-card" id="infoPanel" aria-live="polite">
+        <p class="model-count" id="modelCount">Model 1 of 5</p>
+        <h3 id="modelTitle">—</h3>
+        <p class="model-meta"><span id="modelScientist"></span> · <span class="year-tag" id="modelYear"></span></p>
+        <p class="tagline" id="modelTagline"></p>
+        <ul id="modelPoints"></ul>
+        <p class="why-replaced"><strong>Why it changed:</strong> <span id="modelWhy"></span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIMENTS -->
+  <section id="experiments" class="experiments-section fade-target">
+    <h2>Discoveries behind the models</h2>
+    <div class="experiment-cards">
+      <div class="glass-card exp-card"><h4>Dalton's atomic theory</h4><p>Careful measurement of reacting masses showed elements combine in fixed, simple ratios — evidence for discrete atoms.</p></div>
+      <div class="glass-card exp-card"><h4>Thomson's cathode rays</h4><p>Rays in a vacuum tube bent toward a positive plate, revealing a light, negatively charged particle inside the atom.</p></div>
+      <div class="glass-card exp-card"><h4>Rutherford's gold foil</h4><p>Firing particles at thin gold foil, most passed through — but a few bounced straight back, revealing a dense nucleus.</p></div>
+      <div class="glass-card exp-card"><h4>Bohr's hydrogen spectrum</h4><p>Hydrogen gas emits light only at specific colors, matching electrons jumping between fixed energy levels.</p></div>
+      <div class="glass-card exp-card"><h4>Schrödinger's wave mechanics</h4><p>Treating electrons as waves produced equations that predicted atomic behavior far more accurately than fixed orbits.</p></div>
+    </div>
+
+    <div class="foil-demo glass-card">
+      <div class="foil-demo-text">
+        <h4>Try it: the gold foil experiment</h4>
+        <p>Fire particles at a thin sheet of gold foil. Watch how most pass straight through, some deflect slightly, and a rare few bounce almost straight back — the evidence for a tiny, dense nucleus.</p>
+        <div class="foil-controls">
+          <button class="btn btn-primary" id="fireBtn">Fire particles</button>
+          <button class="ctrl-btn" id="resetFoilBtn">Reset</button>
+        </div>
+        <p class="foil-stats" id="foilStats">Straight through: 0 · Deflected: 0 · Bounced back: 0</p>
+      </div>
+      <canvas id="foilCanvas" width="480" height="240" role="img" aria-label="Gold foil particle scattering animation"></canvas>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section id="compare" class="compare-section fade-target">
+    <h2>Model comparison</h2>
+    <div class="table-wrap">
+      <table id="compareTable">
+        <thead>
+          <tr><th>Model</th><th>Scientist</th><th>Year</th><th>Structure</th><th>Electron description</th><th>Main contribution</th><th>Limitation</th></tr>
+        </thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="about" class="about-section fade-target">
+    <h2>About this journey</h2>
+    <p>Each model on this page was the best available explanation of the atom in its time. None were wrong for their era — each was replaced because new evidence demanded a better explanation. That process of revision is the story of science itself.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p class="footer-title">The Evolution of the Atom</p>
+  <p>An interactive educational journey through atomic theory.</p>
+  <p class="footer-built">Built with HTML, CSS &amp; JavaScript</p>
+  <p class="disclaimer">This website is a simplified educational visualization and does not represent every detail of modern atomic physics.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
